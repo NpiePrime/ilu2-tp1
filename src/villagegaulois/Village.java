@@ -45,15 +45,77 @@ public class Village {
 	public String afficherVillageois() {
 		StringBuilder chaine = new StringBuilder();
 		if (nbVillageois < 1) {
-			chaine.append("Il n'y a encore aucun habitant au village du chef "
-					+ chef.getNom() + ".\n");
+			chaine.append("Il n'y a encore aucun habitant au village du chef " + chef.getNom() + ".\n");
 		} else {
-			chaine.append("Au village du chef " + chef.getNom()
-					+ " vivent les lÃ©gendaires gaulois :\n");
+			chaine.append("Au village du chef " + chef.getNom() + " vivent les lÃ©gendaires gaulois :\n");
 			for (int i = 0; i < nbVillageois; i++) {
 				chaine.append("- " + villageois[i].getNom() + "\n");
 			}
 		}
 		return chaine.toString();
 	}
+
+	public static class Marche {
+		private Etal[] etals;
+
+		public Marche(int nbEtals) {
+			etals = new Etal[nbEtals];
+		}
+
+		public void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit) {
+			etals[indiceEtal].occuperEtal(vendeur, produit, nbProduit);
+		}
+
+		public int trouverEtalLibre() {
+			int found = -1;
+			for (int i = 0; i < etals.length; i++) {
+				if (etals[i].isEtalOccupe() == false) {
+					found = i;
+					break;
+				}
+			}
+			return found;
+
+		}
+
+		public Etal[] trouverEtals(String produit) {
+			Etal[] etalProd = new Etal[etals.length]; // systemarraycopy ou array.copyoff
+			int nbProduits = 0;
+			for (int i = 0; i < etals.length; i++) {
+				if (etals[i].contientProduit(produit) == true) {
+					etalProd[nbProduits] = etals[i];
+					nbProduits++;
+				}
+			}
+			return etalProd;
+		}
+
+		public Etal trouverVendeur(Gaulois gaulois) {
+			Etal found = null;
+			for (int i = 0; i < etals.length; i++) {
+
+				if (etals[i].getVendeur() == gaulois) {
+					found = etals[i];
+					break;
+				}
+			}
+			return found;
+		}
+		public String afficherMarche() {
+			String found = "";
+			int nbEtalsVides = 0;
+			for (int i = 0; i < etals.length; i++) {
+				if (etals[i].isEtalOccupe() == true) {
+					found += etals[i].afficherEtal() + "\n";
+				}else {
+					nbEtalsVides ++;
+				}
+			}		
+			return found + "Il reste " + nbEtalsVides + " étals non utilisés dans le marché.";
+		}
+
+	}
+
+
+
 }
