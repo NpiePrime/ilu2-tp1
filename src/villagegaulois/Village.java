@@ -60,6 +60,9 @@ public class Village {
 
 		public Marche(int nbEtals) {
 			etals = new Etal[nbEtals]; /*=============================*/
+			for (int i = 0; i < etals.length; i++) {
+				etals[i]= new Etal();
+			}
 		}
 
 		public void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit) {
@@ -106,7 +109,7 @@ public class Village {
 			int nbEtalsVides = 0;
 			for (int i = 0; i < etals.length; i++) {
 				if (etals[i].isEtalOccupe() == true) {
-					found += etals[i].afficherEtal() + "\n";
+					found += etals[i].afficherEtal();
 				}else {
 					nbEtalsVides ++;
 				}
@@ -125,7 +128,7 @@ public class Village {
 		marche.utiliserEtal(1, b, "test", 12);
 		marche.utiliserEtal(2, c, "taest", 12);
 		
-		marche.afficherMarche();
+		System.out.println(marche.afficherMarche());
 
 	}
 
