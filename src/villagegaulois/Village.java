@@ -59,7 +59,7 @@ public class Village {
 		private Etal[] etals;
 
 		public Marche(int nbEtals) {
-			etals = new Etal[nbEtals];
+			etals = new Etal[nbEtals]; /*=============================*/
 		}
 
 		public void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit) {
@@ -116,6 +116,17 @@ public class Village {
 
 	}
 
+	public static void main(String[] args) {
+		Gaulois a = new Gaulois("a", 1);
+		Gaulois b = new Gaulois("b", 1);
+		Gaulois c = new Gaulois("c", 1);
+		Marche marche = new Marche(6);
+		marche.utiliserEtal(0, a, "test", 12);
+		marche.utiliserEtal(1, b, "test", 12);
+		marche.utiliserEtal(2, c, "taest", 12);
+		
+		marche.afficherMarche();
 
+	}
 
 }
