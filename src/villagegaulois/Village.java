@@ -1,5 +1,8 @@
 package villagegaulois;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 import personnages.Chef;
 import personnages.Gaulois;
 
@@ -59,7 +62,7 @@ public class Village {
 		private Etal[] etals;
 
 		public Marche(int nbEtals) {
-			etals = new Etal[nbEtals]; /*=============================*/
+			etals = new Etal[nbEtals];
 			for (int i = 0; i < etals.length; i++) {
 				etals[i]= new Etal();
 			}
@@ -90,6 +93,7 @@ public class Village {
 					nbProduits++;
 				}
 			}
+			etalProd = Arrays.copyOf(etalProd, nbProduits);
 			return etalProd;
 		}
 
@@ -105,30 +109,45 @@ public class Village {
 			return found;
 		}
 		public String afficherMarche() {
-			String found = "";
+			StringBuilder found = new StringBuilder();
 			int nbEtalsVides = 0;
 			for (int i = 0; i < etals.length; i++) {
 				if (etals[i].isEtalOccupe() == true) {
-					found += etals[i].afficherEtal();
+					found.append(etals[i].afficherEtal());
 				}else {
 					nbEtalsVides ++;
 				}
 			}		
-			return found + "Il reste " + nbEtalsVides + " étals non utilisés dans le marché.";
+			return found + "Il reste " + nbEtalsVides + " ï¿½tals non utilisï¿½s dans le marchï¿½.";
 		}
 
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 
 	public static void main(String[] args) {
-		Gaulois a = new Gaulois("a", 1);
-		Gaulois b = new Gaulois("b", 1);
-		Gaulois c = new Gaulois("c", 1);
-		Marche marche = new Marche(6);
-		marche.utiliserEtal(0, a, "test", 12);
-		marche.utiliserEtal(1, b, "test", 12);
-		marche.utiliserEtal(2, c, "taest", 12);
+//		Gaulois a = new Gaulois("a", 1);
+//		Gaulois b = new Gaulois("b", 1);
+//		Gaulois c = new Gaulois("c", 1);
+//		Marche marche = new Marche(6);
+//		marche.utiliserEtal(0, a, "test", 12);
+//		marche.utiliserEtal(1, b, "test", 12);
+//		marche.utiliserEtal(2, c, "taest", 12);
 		
-		System.out.println(marche.afficherMarche());
+//		Etal[] etalProd = new Etal[15];
+//		etalProd = marche.trouverEtals("tes");
+//		
+//		for (int i = 0; i < 15; i++) {
+//			System.out.println( marche.trouverEtals("test")[i]);
+//			
+//		}
+//		System.out.println(marche.trouverVendeur(a));
+		
+//		
+//		System.out.println(marche.afficherMarche());
 
 	}
 
